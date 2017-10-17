@@ -1,0 +1,28 @@
+%!TEX root=../document.tex
+
+\section{Aufgabenstellung}
+"Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible. Many teams find that this approach leads to significantly reduced integration problems and allows a team to develop cohesive software more rapidly. This article is a quick overview of Continuous Integration summarizing the technique and its current usage." M.Fowler
+
+Lass das Bruch-Projekt mithilfe von Jenkins automatisch bei jedem Build testen!
+
+\subsection{Grundanforderungen (70\%)}
+\begin{itemize}
+	\item Installiere auf deinem Rechner bzw. einer virtuellen Instanz das Continuous Integration System Jenkins
+	\item Installiere die notwendigen Plugins für Jenkins (Violations, Cobertura)
+	\item Installiere Nose, Coverage und Pylint (mithilfe von pip)
+	\item Integriere dein Bruch-Projekt in Jenkins, indem du es mit Git verbindest
+	\item Überlege dir und argumentiere eine sinnvolle Pull-Strategie
+	\item Konfiguriere Jenkins so, dass deine Unit Tests automatisch bei jedem Build durchgeführt werden inkl. Berichte über erfolgreiche / fehlgeschlagene Tests und Coverage
+	\item Protokolliere deine Vorgehensweise (inkl. Zeitaufwand, Konfiguration, Probleme) und die Ergebnisse (viele Screenshots!)
+\end{itemize}
+
+\subsection{Erweiterungen (30\%)}
+
+\begin{itemize}
+	\item Konfiguriere und teste eine Git-Hook, sodass Änderungen auf GitHub automatisch einen Build auslösen! Dokumentiere deine Vorgangsweise (mit Screenshots)!
+	\item Recherchiere, wie mithilfe von Jenkins GUI-Tests durchgeführt werden können und baue selbstständig einen Beispiel-GUI-Test ein! Dokumentiere deine Vorgangsweise (mit Screenshots)!
+	\item 
+	Lass deine Sphinx-Dokumentation automatisch mitbuilden und veröffentlichen! Dokumentiere deine Vorgangsweise (mit Screenshots)!
+\end{itemize}
+
+\clearpage

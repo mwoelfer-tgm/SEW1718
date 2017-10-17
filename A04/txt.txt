@@ -1,0 +1,66 @@
+Gestartet durch Benutzer Martin Wölfer
+Baue in Arbeitsbereich F:\Program Files (x86)\Jenkins\workspace\Bruch
+ > F:\Program Files\Git\bin\git.exe rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > F:\Program Files\Git\bin\git.exe config remote.origin.url F:\Users\Bernd\Onedrive\Schule\Jahrgang_4\SEW # timeout=10
+Fetching upstream changes from F:\Users\Bernd\Onedrive\Schule\Jahrgang_4\SEW
+ > F:\Program Files\Git\bin\git.exe --version # timeout=10
+ > F:\Program Files\Git\bin\git.exe fetch --tags --progress F:\Users\Bernd\Onedrive\Schule\Jahrgang_4\SEW +refs/heads/*:refs/remotes/origin/*
+ > F:\Program Files\Git\bin\git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+ > F:\Program Files\Git\bin\git.exe rev-parse "refs/remotes/origin/origin/master^{commit}" # timeout=10
+Checking out Revision efc0ff6d1cb8bc6793162b6a8d8b11047cc90b54 (refs/remotes/origin/master)
+ > F:\Program Files\Git\bin\git.exe config core.sparsecheckout # timeout=10
+ > F:\Program Files\Git\bin\git.exe checkout -f efc0ff6d1cb8bc6793162b6a8d8b11047cc90b54
+Commit message: "added .pdf"
+ > F:\Program Files\Git\bin\git.exe rev-list efc0ff6d1cb8bc6793162b6a8d8b11047cc90b54 # timeout=10
+[Bruch] $ sh -xe C:\WINDOWS\TEMP\jenkins7976359631185991900.sh
+The system cannot find the file specified
+FATAL: Befehlsausführung fehlgeschlagen
+java.io.IOException: CreateProcess error=2, Das System kann die angegebene Datei nicht finden
+	at java.lang.ProcessImpl.create(Native Method)
+	at java.lang.ProcessImpl.<init>(Unknown Source)
+	at java.lang.ProcessImpl.start(Unknown Source)
+Caused: java.io.IOException: Cannot run program "sh" (in directory "F:\Program Files (x86)\Jenkins\workspace\Bruch"): CreateProcess error=2, Das System kann die angegebene Datei nicht finden
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at hudson.Proc$LocalProc.<init>(Proc.java:249)
+	at hudson.Proc$LocalProc.<init>(Proc.java:218)
+	at hudson.Launcher$LocalLauncher.launch(Launcher.java:930)
+	at hudson.Launcher$ProcStarter.start(Launcher.java:450)
+	at hudson.tasks.CommandInterpreter.perform(CommandInterpreter.java:109)
+	at hudson.tasks.CommandInterpreter.perform(CommandInterpreter.java:66)
+	at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:20)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:736)
+	at hudson.model.Build$BuildExecution.build(Build.java:206)
+	at hudson.model.Build$BuildExecution.doRun(Build.java:163)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:496)
+	at hudson.model.Run.execute(Run.java:1724)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:43)
+	at hudson.model.ResourceController.execute(ResourceController.java:97)
+	at hudson.model.Executor.run(Executor.java:421)
+Build step 'Shell ausführen' marked build as failure
+[Cobertura] Publishing Cobertura coverage report...
+Zeichne Testergebnisse auf.
+ERROR: Step ‘Veröffentliche JUnit-Testergebnisse.’ failed: Keine JUnit-Testergebnisse gefunden. Liegt vielleicht ein Konfigurationsfehler vor?
+---
+--- Jenkins Violation Comments to GitHub ---
+---
+gitHubUrl: 
+repositoryOwner: 
+repositoryName: 
+pullRequestId: 
+usernamePasswordCredentialsId: false
+username: false
+password: false
+useOAuth2TokenCredentials: false
+oAuth2Token: false
+createSingleFileComments: false
+createCommentWithAllSingleFileComments: false
+commentOnlyChangedContent: false
+minSeverity: INFO
+keepOldComments: false
+PYLINT with pattern **pylint.out
+Running Jenkins Violation Comments To GitHub
+PR 
+Workspace: F:\Program Files (x86)\Jenkins\workspace\Bruch
+No pull request id defined, will not send violation comments to GitHub.
+Finished: FAILURE
