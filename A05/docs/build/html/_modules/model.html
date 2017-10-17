@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>model &#8212; A05 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../modules.html">A05 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for model</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+
+<div class="viewcode-block" id="Model"><a class="viewcode-back" href="../model.html#model.Model">[docs]</a><span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+<div class="viewcode-block" id="Model.__init__"><a class="viewcode-back" href="../model.html#model.Model.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        No member attributes need to be created</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Model.get_route"><a class="viewcode-back" href="../model.html#model.Model.get_route">[docs]</a>    <span class="k">def</span> <span class="nf">get_route</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">is_xml</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a query to the google drive API, either parses the XML or JSON File</span>
+<span class="sd">        :param start: the string which holds the information where the route is to be started</span>
+<span class="sd">        :param destination: the string which holds the information where the route ends</span>
+<span class="sd">        :param is_xml: boolean which determines whether a XML or JSON file is to be requested</span>
+<span class="sd">        :return: A html-formatted string where the route is described and a status for the GUI</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_xml</span><span class="p">:</span>
+            <span class="c1"># GET is used because no information is posted, only received</span>
+            <span class="c1"># important: the parameter mode=driving and language=de might seem unnecessary, but its important</span>
+            <span class="c1"># that these are at the beginning to prevent injection-strings, for example &#39;Jägerstraße&amp;mode=walking&#39;</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://maps.googleapis.com/maps/api/directions/xml?mode=driving&amp;language=de&amp;origin=</span><span class="si">%s</span><span class="s2">&amp;destination=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">start</span><span class="p">,</span> <span class="n">destination</span><span class="p">))</span>
+            <span class="c1"># get the root element of the XML structure</span>
+            <span class="n">xml_data</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="c1"># get the status, which is the first child element</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">xml_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+            <span class="c1"># check for certain statuses, and return if certain where returned</span>
+            <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;NOT_FOUND&#39;</span> <span class="ow">or</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;INVALID_REQUEST&#39;</span> <span class="ow">or</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;ZERO_RESULTS&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;Es wurde der Status </span><span class="si">%s</span><span class="s2"> zurückgegeben, Eingabe überprüfen!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">status</span><span class="p">)]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">status_ok</span> <span class="o">=</span> <span class="s2">&quot;Berechnung Ok!&quot;</span>
+
+            <span class="c1"># get the legend</span>
+            <span class="n">leg</span> <span class="o">=</span> <span class="n">xml_data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="c1"># from the legend extract the information how long the trip is in duration and distance</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;&lt;p&gt;Die Gesamtdauer beträgt &lt;b&gt;</span><span class="si">%s</span><span class="s2">&lt;/b&gt;, die Gesamtentfernung: &lt;b&gt;</span><span class="si">%s</span><span class="s2">&lt;/b&gt; &lt;/p&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">leg</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;duration&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">leg</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            
+            <span class="c1"># iterate through all steps in the legend</span>
+            <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">leg</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;step&#39;</span><span class="p">):</span>
+                <span class="c1"># append the html_instruction, distance and duration information to the output string</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">, Entfernung </span><span class="si">%s</span><span class="s2">, Dauer </span><span class="si">%s</span><span class="s2"> &lt;br&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">step</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;html_instructions&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">step</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">step</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;duration&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+            <span class="c1"># return the route information and the status</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">output</span><span class="p">,</span> <span class="n">status_ok</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># request json response</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://maps.googleapis.com/maps/api/directions/json?mode=driving&amp;language=de&amp;origin=</span><span class="si">%s</span><span class="s2">&amp;destination=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">start</span><span class="p">,</span> <span class="n">destination</span><span class="p">))</span>
+            <span class="c1"># the requests module is able to convert json into a dictionary which is more easy to work with</span>
+            <span class="n">json_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">json_data</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span>
+            <span class="c1"># again check for certain statuses and return if a bad one was returned</span>
+            <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;NOT_FOUND&#39;</span> <span class="ow">or</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;INVALID_REQUEST&#39;</span> <span class="ow">or</span> <span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;ZERO_RESULTS&#39;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;Es wurde der Status </span><span class="si">%s</span><span class="s2"> zurückgegeben, Eingabe überprüfen!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">status</span><span class="p">)]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">status_ok</span> <span class="o">=</span> <span class="s2">&quot;Berechnung Ok!&quot;</span>
+            
+            <span class="c1"># get the legend information</span>
+            <span class="n">legs</span> <span class="o">=</span> <span class="n">json_data</span><span class="p">[</span><span class="s2">&quot;routes&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;legs&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># get all steps</span>
+            <span class="n">steps</span> <span class="o">=</span> <span class="n">legs</span><span class="p">[</span><span class="s2">&quot;steps&quot;</span><span class="p">]</span>
+            <span class="c1"># also extract the total duration and distance for the route from the legend</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;&lt;p&gt;Die Gesamtdauer beträgt &lt;b&gt;</span><span class="si">%s</span><span class="s2">&lt;/b&gt;, die Gesamtentfernung: &lt;b&gt;</span><span class="si">%s</span><span class="s2">&lt;/b&gt; &lt;/p&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">legs</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">legs</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+
+            <span class="c1"># iterate through the steps</span>
+            <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+                <span class="c1"># append the html_instructions, distance and duration to the output string</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">, Entfernung </span><span class="si">%s</span><span class="s2">, Dauer </span><span class="si">%s</span><span class="s2"> &lt;br&gt;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">step</span><span class="p">[</span><span class="s2">&quot;html_instructions&quot;</span><span class="p">],</span> <span class="n">step</span><span class="p">[</span><span class="s2">&quot;distance&quot;</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">step</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+            <span class="c1"># return the route string and the status</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">output</span><span class="p">,</span> <span class="n">status_ok</span><span class="p">]</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../modules.html">A05 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Martin Woelfer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+    </div>
+  </body>
+</html>
