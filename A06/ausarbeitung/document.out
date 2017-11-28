@@ -1,0 +1,41 @@
+\BOOKMARK [1][-]{section.1}{Aufgabenstellung}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{UML-Klassendiagramm der verwendeten Architektur inkl. Beschreibung}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Kurze allgemeine Ausarbeitung zu Design Patterns}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Ausarbeitung zum Decorator Pattern}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Ausarbeitung zu einem der folgenden Design Patterns: Observer, Abstract Factory, Strategy}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Design Patterns}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Unterteilung}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Creational Pattern}{subsection.2.1}% 8
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Structural Pattern}{subsection.2.1}% 9
+\BOOKMARK [2][-]{subsection.2.2}{Behaviour Pattern}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.3}{Nutzen}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.4}{\334bersicht Design Patterns}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Creational Patterns}{subsection.2.4}% 13
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Structural Patterns}{subsection.2.4}% 14
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Behavioural Patterns}{subsection.2.4}% 15
+\BOOKMARK [1][-]{section.3}{Decorator Pattern}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Allgemeines Klassendiagramm}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.2}{Eigenschaften}{section.3}% 18
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Anwendung}{subsection.3.2}% 19
+\BOOKMARK [3][-]{subsubsection.3.2.2}{CommonInterface}{subsection.3.2}% 20
+\BOOKMARK [3][-]{subsubsection.3.2.3}{Core-Klassen}{subsection.3.2}% 21
+\BOOKMARK [3][-]{subsubsection.3.2.4}{Decorator Base Class}{subsection.3.2}% 22
+\BOOKMARK [3][-]{subsubsection.3.2.5}{Konkrete Decorator-Klassen}{subsection.3.2}% 23
+\BOOKMARK [2][-]{subsection.3.3}{Konkretes Klassendiagramm}{section.3}% 24
+\BOOKMARK [2][-]{subsection.3.4}{Vor- und Nachteile}{section.3}% 25
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Vorteile}{subsection.3.4}% 26
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Nachteile}{subsection.3.4}% 27
+\BOOKMARK [2][-]{subsection.3.5}{Weitere Anwendungsf\344lle}{section.3}% 28
+\BOOKMARK [1][-]{section.4}{Abstract Factory}{}% 29
+\BOOKMARK [2][-]{subsection.4.1}{Allgemeines Klassendiagramm}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.2}{Eigenschaften}{section.4}% 31
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Anwendung}{subsection.4.2}% 32
+\BOOKMARK [3][-]{subsubsection.4.2.2}{AbstractFactory}{subsection.4.2}% 33
+\BOOKMARK [3][-]{subsubsection.4.2.3}{ConcreteFactory}{subsection.4.2}% 34
+\BOOKMARK [3][-]{subsubsection.4.2.4}{AbstractProduct}{subsection.4.2}% 35
+\BOOKMARK [3][-]{subsubsection.4.2.5}{ConcreteProduct}{subsection.4.2}% 36
+\BOOKMARK [2][-]{subsection.4.3}{Konkretes Klassendiagramm}{section.4}% 37
+\BOOKMARK [2][-]{subsection.4.4}{Vor- und Nachteile}{section.4}% 38
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Vorteile}{subsection.4.4}% 39
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Nachteile}{subsection.4.4}% 40
+\BOOKMARK [2][-]{subsection.4.5}{Weitere Anwendungsf\344lle}{section.4}% 41

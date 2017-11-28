@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from src.Channel import Channel
 import base64
 from Crypto.Cipher import AES
@@ -12,6 +12,23 @@ class ChannelDecorator(Channel, ABC):
         """
         super().__init__()
         self.channel = channel
+
+    @abstractmethod
+    def printLine(self, message):
+        """
+        Define abstract printLine method
+        :param message: The message to be printed
+        :return: None
+        """
+        pass
+
+    @abstractmethod
+    def readLine(self):
+        """
+        Define abstract readLine method
+        :return: None
+        """
+        pass
 
 class StringChannel(ChannelDecorator):
     # the basic channel, which encrypts and decrypts the string to a byte array

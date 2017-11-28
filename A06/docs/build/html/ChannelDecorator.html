@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ChannelDecorator Module &#8212; A06 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="A06 1.0 documentation" href="modules.html" />
+    <link rel="next" title="MainClient Module" href="MainClient.html" />
+    <link rel="prev" title="Channel Module" href="Channel.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="MainClient.html" title="MainClient Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Channel.html" title="Channel Module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="modules.html">A06 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="channeldecorator-module">
+<h1>ChannelDecorator Module<a class="headerlink" href="#channeldecorator-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><a class="reference internal" href="#module-ChannelDecorator" title="ChannelDecorator"><code class="xref py py-mod docutils literal"><span class="pre">ChannelDecorator</span></code></a> Module<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-ChannelDecorator"></span><dl class="class">
+<dt id="ChannelDecorator.AESChannel">
+<em class="property">class </em><code class="descclassname">ChannelDecorator.</code><code class="descname">AESChannel</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#AESChannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.AESChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ChannelDecorator.ChannelDecorator" title="ChannelDecorator.ChannelDecorator"><code class="xref py py-class docutils literal"><span class="pre">ChannelDecorator.ChannelDecorator</span></code></a></p>
+<dl class="method">
+<dt id="ChannelDecorator.AESChannel.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#AESChannel.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.AESChannel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ChannelDecorator.AESChannel.printLine">
+<code class="descname">printLine</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#AESChannel.printLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.AESChannel.printLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>implement the printLine method with AES encryption
+:param message: the message which is to be encrypted
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ChannelDecorator.AESChannel.readLine">
+<code class="descname">readLine</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#AESChannel.readLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.AESChannel.readLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>implement the readLine method with AES decryption
+:return: the AES decrypted string trimmed of its whitespaces</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ChannelDecorator.BASE64Channel">
+<em class="property">class </em><code class="descclassname">ChannelDecorator.</code><code class="descname">BASE64Channel</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#BASE64Channel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.BASE64Channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ChannelDecorator.ChannelDecorator" title="ChannelDecorator.ChannelDecorator"><code class="xref py py-class docutils literal"><span class="pre">ChannelDecorator.ChannelDecorator</span></code></a></p>
+<dl class="method">
+<dt id="ChannelDecorator.BASE64Channel.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#BASE64Channel.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.BASE64Channel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ChannelDecorator.BASE64Channel.printLine">
+<code class="descname">printLine</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#BASE64Channel.printLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.BASE64Channel.printLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>implement printLine method with base64 encoding
+:param message: the message which is to be encoded
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ChannelDecorator.BASE64Channel.readLine">
+<code class="descname">readLine</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#BASE64Channel.readLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.BASE64Channel.readLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>implement readLine method with base64 decoding
+:return: the bsae64 decoded string trimmed of its whitespaces</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ChannelDecorator.ChannelDecorator">
+<em class="property">class </em><code class="descclassname">ChannelDecorator.</code><code class="descname">ChannelDecorator</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#ChannelDecorator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.ChannelDecorator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">src.Channel.Channel</span></code>, <code class="xref py py-class docutils literal"><span class="pre">abc.ABC</span></code></p>
+<dl class="method">
+<dt id="ChannelDecorator.ChannelDecorator.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#ChannelDecorator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.ChannelDecorator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call super constructor of Channel
+:param channel: the channel which gets decaorated</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ChannelDecorator.ChannelDecorator.printLine">
+<code class="descname">printLine</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#ChannelDecorator.printLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.ChannelDecorator.printLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define abstract printLine method
+:param message: The message to be printed
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ChannelDecorator.ChannelDecorator.readLine">
+<code class="descname">readLine</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#ChannelDecorator.readLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.ChannelDecorator.readLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define abstract readLine method
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ChannelDecorator.StringChannel">
+<em class="property">class </em><code class="descclassname">ChannelDecorator.</code><code class="descname">StringChannel</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#StringChannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.StringChannel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ChannelDecorator.ChannelDecorator" title="ChannelDecorator.ChannelDecorator"><code class="xref py py-class docutils literal"><span class="pre">ChannelDecorator.ChannelDecorator</span></code></a></p>
+<dl class="method">
+<dt id="ChannelDecorator.StringChannel.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>channel</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#StringChannel.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.StringChannel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call super constructor
+:param channel: the channel which gets decorated</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ChannelDecorator.StringChannel.printLine">
+<code class="descname">printLine</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#StringChannel.printLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.StringChannel.printLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>implement printLine method, encode the message the message which is to be sent
+:param message: the message which gets sent
+:return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ChannelDecorator.StringChannel.readLine">
+<code class="descname">readLine</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ChannelDecorator.html#StringChannel.readLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ChannelDecorator.StringChannel.readLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>implement readLine method, decode message which got received by the channel which is to be decorated
+:return: the decoded message</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="modules.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ChannelDecorator Module</a><ul>
+<li><a class="reference internal" href="#id1"><code class="docutils literal"><span class="pre">ChannelDecorator</span></code> Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Channel.html"
+                        title="previous chapter">Channel Module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="MainClient.html"
+                        title="next chapter">MainClient Module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ChannelDecorator.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="MainClient.html" title="MainClient Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Channel.html" title="Channel Module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="modules.html">A06 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Martin Woelfer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>
