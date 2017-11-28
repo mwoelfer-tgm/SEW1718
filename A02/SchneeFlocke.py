@@ -15,6 +15,7 @@ def cls():
     os.system("cls")
 
 class SchneeFlocke(threading.Thread):
+
     def __init__(self, x):
         threading.Thread.__init__(self)
         self.x = x
