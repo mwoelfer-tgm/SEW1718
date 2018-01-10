@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+db.define_table(
+   'user',
+   Field('name', notnull = True),
+   Field('picture', 'upload'),
+   Field('email', requires = IS_EMAIL()),
+   Field('phone_number', requires = IS_MATCH('[\d\-\(\) ]+')),
+   Field('address'),
+   format = '%(name)s'
+)

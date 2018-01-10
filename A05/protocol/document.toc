@@ -1,0 +1,11 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Aufgabenstellung}{1}{section.1}
+\contentsline {section}{\numberline {2}Ergebnisse}{1}{section.2}
+\contentsline {subsection}{\numberline {2.1}view}{1}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}controller}{2}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}init()}{2}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}submit()}{3}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}reset()}{3}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}model}{3}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}get\_route()}{3}{subsubsection.2.3.1}
+\contentsline {subsection}{\numberline {2.4}run}{5}{subsection.2.4}

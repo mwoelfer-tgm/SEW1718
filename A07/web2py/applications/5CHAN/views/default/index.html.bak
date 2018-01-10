@@ -1,0 +1,23 @@
+{{extend 'layout.html'}}
+
+{{block header}}
+<center style="background-color: #333; color:white; padding:30px">
+  <h1>{{=request.application}}
+</center>
+{{end}}
+
+{{if 'message' in globals():}}
+<h2>{{=message}}</h2>
+  <a class="btn btn-secondary" href="{{=URL('examples','default','index')}}">{{=T("Online examples")}}</a>
+  <a class="btn btn-secondary" href="http://web2py.com">web2py.com</a>
+  <a class="btn btn-secondary" href="http://web2py.com/book">{{=T('Documentation')}}</a>
+<center>
+    <a class="btn btn-secondary" href="{{=URL('default','api_get_user_email')}}">{{=T('API Example')}}</a>
+  <a class="btn btn-secondary" href="{{=URL('default','grid/auth_user')}}">{{=T('Grid Example')}}</a>
+  <a class="btn btn-secondary" href="{{=URL('default','wiki')}}">{{=T('Wiki Example')}}</a>
+</center>
+{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}

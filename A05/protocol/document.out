@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{Aufgabenstellung}{}% 1
+\BOOKMARK [1][-]{section.2}{Ergebnisse}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{view}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{controller}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{init\(\)}{subsection.2.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.2.2}{submit\(\)}{subsection.2.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.3}{reset\(\)}{subsection.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.3}{model}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.3.1}{get\137route\(\)}{subsection.2.3}% 9
+\BOOKMARK [2][-]{subsection.2.4}{run}{section.2}% 10

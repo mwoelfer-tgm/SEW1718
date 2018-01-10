@@ -1,0 +1,93 @@
+timestamp: 2018-01-10T19:49:31.804363
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+success!
+timestamp: 2018-01-10T19:49:32.034094
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2018-01-10T19:49:32.160025
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2018-01-10T19:49:32.260282
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2018-01-10T19:49:32.368262
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2018-01-10T19:49:32.499482
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2018-01-10T19:57:02.738666
+CREATE TABLE "retards"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512) NOT NULL,
+    "picture" CHAR(512),
+    "email" CHAR(512),
+    "phone_number" CHAR(512),
+    "address" CHAR(512)
+);
+success!
+timestamp: 2018-01-10T20:26:53.279214
+CREATE TABLE "thread"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512) NOT NULL
+);
+success!
+timestamp: 2018-01-10T20:27:21.425791
+CREATE TABLE "post"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "post_text" CHAR(512) NOT NULL,
+    "post_time" CHAR(512),
+    "thread_id" INTEGER REFERENCES "thread" ("id") ON DELETE CASCADE  NOT NULL 
+);
+success!
+timestamp: 2018-01-10T21:13:26.875842
+CREATE TABLE "forum_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name" CHAR(512) UNIQUE,
+    "mail" CHAR(512) UNIQUE,
+    "pw" CHAR(512)
+);
+success!
+timestamp: 2018-01-10T21:19:41.003834
+ALTER TABLE "thread" ADD "user_id" INTEGER REFERENCES "forum_user" ("id") ON DELETE CASCADE  NOT NULL ;
+timestamp: 2018-01-10T21:20:15.043978
+ALTER TABLE "thread" ADD "user_id" INTEGER REFERENCES "forum_user" ("id") ON DELETE CASCADE  ;
+success!
+success!

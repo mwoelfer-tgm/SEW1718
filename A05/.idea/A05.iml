@@ -4,6 +4,8 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.4.0 (F:\Users\Bernd\AppData\Local\Programs\Python\Python34\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="R User Library" level="project" />
+    <orderEntry type="library" name="R Skeletons" level="application" />
   </component>
   <component name="ReSTService">
     <option name="workdir" value="F:\Users\Bernd\Onedrive\Schule\Jahrgang_5\SEW\A05\docs" />
