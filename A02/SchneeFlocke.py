@@ -1,44 +1,45 @@
 import threading
 import random
+from pprint import pprint
 import time
 import os
 
-counter = 0
-HEIGHT = 40
-WIDTH = 100
-
+HEIGHT = 50
+WIDTH = 30
+SLEEP = 0.05
 def cls():
     """
     Clears the console
     :return: None
     """
-    os.system("cls")
+    ## os.system("cls")
+    return
 
 class SchneeFlocke(threading.Thread):
 
-    def __init__(self, x):
+    def __init__(self, x, start_event):
         threading.Thread.__init__(self)
+        self.event = start_event
         self.x = x
         self.y = 0
         self.closes = False
         self.lock = threading.Lock()
 
     def run(self):
+        self.event.wait()
         # run as long as thread is not closing
         while not self.closes:
-            time.sleep(0.3)
-            # Either adds -1, 0 or 1 to the x coordinate
-            self.x += round(random.uniform(-1, 1))
-            # Increments the y variable
-            self.y += 1
-            # checks if the y attribute reached the Floor
-            if self.y == HEIGHT:
-                self.closes = True
-
-
-        self.lock.acquire()
-        # release the lock
-        self.lock.release()
+            with self.lock:
+                time.sleep(SLEEP)
+                # Either adds -1, 0 or 1 to the x coordinate
+                self.x += round(random.uniform(-1, 1))
+                # the x coordinate can't be negative
+                # the x coordinate can't be outside of the width
+                # Increments the y variable
+                self.y += 1
+                # checks if the y attribute reached the Floor
+                if self.y == HEIGHT:
+                    self.closes = True
 
 def visualize(list):
     """
@@ -46,18 +47,23 @@ def visualize(list):
     :param list: List of SchneeFlocken
     :return: None
     """
-    # This is supposed to 'buffer' everything to simualte the y height
-    for i in range(0, list[0].y):
-        print()
-    # Iterate through the list
-    for i in range(0, len(list)):
-        # Print out an icon for each SchneeFlocke
-        print("*",end='')
-        # Print the x cord as the distance between each SchneeFlocke
-        for i in range(0, list[i].x - i):
-            print(" ",end='')
+    matrix = [[0 for x in range(WIDTH)] for y in range(HEIGHT)]
 
+    y = list[0].y
+    if y >= HEIGHT:
+        y = HEIGHT-1
+    for x in range(0, len(matrix[y])):
+        for s in list:
+            cords = [s.x % WIDTH, s.y]
+            if [x, y] == cords:
+                print("*", end='')
+            else:
+                print(" ", end='')
+    print()
 if __name__ == '__main__':
+    start_event = threading.Event()
+
+
     s_list = []
 
     s_count = int(WIDTH/3)
@@ -65,23 +71,23 @@ if __name__ == '__main__':
 
     # add all Threads to SchneeFlocken-List
     for i in range(0,s_count):
-        s_list.append(SchneeFlocke(i*3))
+        s_list.append(SchneeFlocke(i*3, start_event))
 
-    # start all Threads
     for s in s_list:
         s.start()
 
-    # clear console
-    cls()
+    # wait a sec
+    time.sleep(1)
+    # start all Threads with event.set
+    start_event.set()
+
     # run programm as long as there are less closed threads than threads which were started
     while closed_threads < s_count:
         # print out the current list
-        visualize(s_list)
         # check if a Thread has been closed
+        visualize(s_list)
         for s in s_list:
             if s.closes:
                 s_list.remove(s)
                 closed_threads += 1
-        time.sleep(0.1)
-        # clear console
-        cls()
+        time.sleep(SLEEP)

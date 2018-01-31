@@ -1,0 +1,4 @@
+{{extend 'layout.html'}}
+<h1>Einen neuen Thread anlegen</h1>
+{{=form}}
+Pritn:{{=print_txt}}

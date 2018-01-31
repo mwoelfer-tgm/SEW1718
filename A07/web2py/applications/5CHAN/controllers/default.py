@@ -6,52 +6,44 @@
 
 # ---- example index page ----
 def index():
-    return dict()
+    threads = db(db.thread).select()
+    records = SQLFORM.grid(db.thread, db.thread(), deletable=True)
+    form = SQLFORM(db.thread).process()
+    form.element(_type='submit')['_value'] = T("Thread erstellen")
+    posts = db().select(db.post.ALL)
+    if form.accepted:
+        redirect(URL("index.html"), client_side=True)
+        response.flash = T("Neuer Thread wurde erstellt")
+    return dict(threads=threads, records=records,form=form, posts=posts)
 
-# ---- API (example) -----
-@auth.requires_login()
-def api_get_user_email():
-    if not request.env.request_method == 'GET': raise HTTP(403)
-    return response.json({'status':'success', 'email':auth.user.email})
+def delete():
+    pass
 
-# ---- Smart Grid (example) -----
-@auth.requires_membership('admin') # can only be accessed by members of admin groupd
-def grid():
-    response.view = 'generic.html' # use a generic view
-    tablename = request.args(0)
-    if not tablename in db.tables: raise HTTP(403)
-    grid = SQLFORM.smartgrid(db[tablename], args=[tablename], deletable=False, editable=False)
-    return dict(grid=grid)
+def create_post():
+    thread = request.args[0]
+    back_button = A(T('Back'), _href=URL('default', 'index', user_signature=True), _class='btn')
+    form=SQLFORM(db.post, fields=['post_text','post_user'])
+    form.vars.thread_id = thread
+    form.process()
+    return dict(form=form,thread=thread,back_button=back_button)
 
-# ---- Embedded wiki (example) ----
-def wiki():
-    auth.wikimenu() # add the wiki to the menu
-    return auth.wiki() 
+def delete_post():
+    post = request.args[0]
+    db(db.post.id==post).delete()
+    redirect(URL("index.html"), client_side=True)
+    
+def update_post():
+    post = request.args[0]
+    record = db.post(post)
+    form=SQLFORM(db.post, record, fields=['post_text'])
+    form.vars.thread_id = request.args[2]
+    form.vars.post_user = request.args[1]
+    form.process()
+    db(db.post.id==request.args[3]).delete()
+    back_button = A(T('Back'), _href=URL('default', 'index', user_signature=True), _class='btn')
+    return dict(form=form, back_button=back_button)
 
-# ---- Action for login/register/etc (required for auth) -----
-def user():
-    """
-    exposes:
-    http://..../[app]/default/user/login
-    http://..../[app]/default/user/logout
-    http://..../[app]/default/user/register
-    http://..../[app]/default/user/profile
-    http://..../[app]/default/user/retrieve_password
-    http://..../[app]/default/user/change_password
-    http://..../[app]/default/user/bulk_register
-    use @auth.requires_login()
-        @auth.requires_membership('group name')
-        @auth.requires_permission('read','table name',record_id)
-    to decorate functions that need access control
-    also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
-    """
-    return dict(form=auth())
-
-# ---- action to server uploaded static content (required) ---
-@cache.action()
-def download():
-    """
-    allows downloading of uploaded files
-    http://..../[app]/default/download/[filename]
-    """
-    return response.download(request, db)
+def delete_thread():
+    thread = request.args[0]
+    db(db.thread.id==thread).delete()
+    redirect(URL("index.html"), client_side=True)
